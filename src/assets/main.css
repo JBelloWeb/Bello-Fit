@@ -1,0 +1,15 @@
+:root{
+    --bello-black: #1f2428;
+    --bello-cream: #fff2c7;
+    --bello-red: #D72638;
+    --bello-purple: #7a5ddd;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--bello-black);
+    color: var(--bello-cream);
+}
