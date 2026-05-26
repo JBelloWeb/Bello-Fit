@@ -1,7 +1,8 @@
 <script setup>
 import { ref } from 'vue';
 // Importamos las "Habitaciones"
-import VistaCarga from './views/VistaCarga.vue';
+import VistaCargaMetricas from './views/VistaCarga.vue';
+import VistaCargaEjercicio from './views/VistaCargaEjercicio.vue';
 import VistaEstadisticas from './views/VistaEstadisticas.vue';
 
 const vistaActual = ref('carga'); // Controla qué pantalla se ve
@@ -11,13 +12,17 @@ const vistaActual = ref('carga'); // Controla qué pantalla se ve
   <div class="contenedor-principal">
     
     <!-- Muestra una vista u otra dependiendo del botón que toques -->
-    <VistaCarga v-if="vistaActual === 'carga'" />
+    <VistaCargaMetricas v-if="vistaActual === 'carga'" />
+    <VistaCargaEjercicio v-if="vistaActual === 'ejercicio'" />
     <VistaEstadisticas v-if="vistaActual === 'estadisticas'" />
 
     <!-- Nuestro menú sigue viviendo en el controlador para estar siempre visible -->
     <nav class="menu-inferior">
       <button :class="{ activo: vistaActual === 'carga' }" @click="vistaActual = 'carga'">
-        📝 Cargar
+        📝 Cargar metricas diarias
+      </button>
+      <button :class="{ activo: vistaActual === 'ejercicio' }" @click="vistaActual = 'ejercicio'">
+        💪 Cargar ejercicio
       </button>
       <button :class="{ activo: vistaActual === 'estadisticas' }" @click="vistaActual = 'estadisticas'">
         📊 Estadísticas
