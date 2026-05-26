@@ -12,25 +12,49 @@ export const inputsMetricas = reactive({ agua: null, suenio: null });
 
 export const cargarDatosDelDia = async () => {
     const fechaSeleccionada = estadoDia.fecha;
-    if(!fechaSeleccionada) return;
+    if (!fechaSeleccionada) return;
 
+    // Reset general al cambiar de día
     estadoDia.ejercicios = [];
     estadoDia.metricas.agua = 0;
     estadoDia.metricas.suenio = 0;
 
-    try{
-        const { data: diario } = await supabase.from('registro_diario').select('*').eq('dia_id', fechaSeleccionada).single();
-        if(ejercicioBD && ejercicioBD.length > 0) {
-            ejercicioBD.forEach(ej => {
-                estadoDia.ejercicio.push({
-                    musuclo: ej.musculo, ejercicio: ej.ejercicio, peso: ej.peso,
+    try {
+        // SOLUCIÓN 2: Usamos .maybeSingle() para que no tire error si el día está vacío
+        const { data: diario, error: errorDiario } = await supabase
+            .from('registro_diario')
+            .select('*')
+            .eq('dia_id', fechaSeleccionada)
+            .maybeSingle(); 
+
+        if (errorDiario) throw errorDiario;
+
+        if (diario) {
+            estadoDia.metricas.agua = diario.agua || 0;
+            estadoDia.metricas.suenio = diario.suenio || 0;
+        }
+
+        // SOLUCIÓN 1: Cuidamos de usar ejerciciosBD (plural) en todo el bloque
+        const { data: ejerciciosBD, error: errorEjercicios } = await supabase
+            .from('ejercicio')
+            .select('*')
+            .eq('dia_fk', fechaSeleccionada);
+            
+        if (errorEjercicios) throw errorEjercicios;
+
+        if (ejerciciosBD && ejerciciosBD.length > 0) {
+            ejerciciosBD.forEach(ej => {
+                estadoDia.ejercicios.push({
+                    musculo: ej.musculo, 
+                    ejercicio: ej.ejercicio, 
+                    peso: ej.peso,
                     series: ej.series_x_repeticiones.split('X')[0] || 0,
                     repeticiones: ej.series_x_repeticiones.split('X')[1] || 0
                 });
             });
         }
-    } catch (error){
-        if(error.code !== 'PGRST116') console.error("Error al recuperar:", error);
+    } catch (error) {
+        console.error("Error al recuperar los datos de Supabase:", error);
     }
 };
 

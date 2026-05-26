@@ -1,30 +1,34 @@
 <script setup>
 import { ref } from 'vue';
-// Importamos las "Habitaciones"
 import VistaCargaMetricas from './views/VistaCarga.vue';
 import VistaCargaEjercicio from './views/VistaCargaEjercicio.vue';
-import VistaEstadisticas from './views/VistaEstadisticas.vue';
+import PanelEstadisticas from './components/PanelEstadisticas.vue'; // <-- Importamos el panel
 
-const vistaActual = ref('carga'); // Controla qué pantalla se ve
+const vistaActual = ref('carga'); 
+const panelAbierto = ref(false); // <-- Nueva variable para controlar la ventana
 </script>
 
 <template>
   <div class="contenedor-principal">
     
-    <!-- Muestra una vista u otra dependiendo del botón que toques -->
     <VistaCargaMetricas v-if="vistaActual === 'carga'" />
     <VistaCargaEjercicio v-if="vistaActual === 'ejercicio'" />
-    <VistaEstadisticas v-if="vistaActual === 'estadisticas'" />
 
-    <!-- Nuestro menú sigue viviendo en el controlador para estar siempre visible -->
+    <PanelEstadisticas 
+        :abierto="panelAbierto" 
+        :vistaActual="vistaActual" 
+        @cerrar="panelAbierto = false"
+    />
+
     <nav class="menu-inferior">
       <button :class="{ activo: vistaActual === 'carga' }" @click="vistaActual = 'carga'">
-        📝 Cargar metricas diarias
+        📝 Cargar métricas
       </button>
       <button :class="{ activo: vistaActual === 'ejercicio' }" @click="vistaActual = 'ejercicio'">
         💪 Cargar ejercicio
       </button>
-      <button :class="{ activo: vistaActual === 'estadisticas' }" @click="vistaActual = 'estadisticas'">
+      
+      <button @click="panelAbierto = true">
         📊 Estadísticas
       </button>
     </nav>

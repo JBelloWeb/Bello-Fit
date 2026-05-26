@@ -22,7 +22,7 @@
                 <span class="icono">💧</span>
                 <div>
                     <p class="valor">{{ agua }}</p>
-                    <p class="etiqueta">Vasos</p>
+                    <p class="etiqueta">ml</p>
                 </div>
             </div>
 
@@ -30,7 +30,7 @@
                 <span class="icono">💤</span>
                 <div>
                     <p class="valor">{{ suenio }}</p>
-                    <p class="etiqueta">Horas</p>
+                    <p class="etiqueta">hs</p>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
 
 <style scoped>
 .tarjeta-resumen {
-    background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+    background: var(--bello-purple);
     color: white;
     padding: 20px;
     border-radius: 12px;

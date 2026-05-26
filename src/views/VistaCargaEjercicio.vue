@@ -2,6 +2,8 @@
     import { onMounted } from 'vue';
     import { estadoDia, inputsMetricas, cargarDatosDelDia, guardarDiaEnNube } from '../funcs/estadoGlobal.js';
     import FormularioEjercicio from '../components/FormularioEjercicio.vue';
+    import CalendarioSemanal from '../components/CalendarioSemanal.vue';
+
 
     const recibirEjercicioDelHijo = (datos) => {
        estadoDia.ejercicios.push(datos);
@@ -12,10 +14,7 @@
 
 <template>
 
-     <div class="seccion">
-        <h2>Fecha</h2>
-        <input type="date" v-model="estadoDia.fecha" @change="cargarDatosDelDia">
-    </div>
+     <CalendarioSemanal />
 
     <div class="seccion">
             <h2>Ejercicio</h2>

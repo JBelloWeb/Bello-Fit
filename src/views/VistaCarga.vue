@@ -2,6 +2,7 @@
 import { onMounted } from 'vue';
 import { estadoDia, inputsMetricas, cargarDatosDelDia, guardarDiaEnNube } from '../funcs/estadoGlobal.js';
 import ResumenDiario from '../components/ResumenDiario.vue';
+import CalendarioSemanal from '../components/CalendarioSemanal.vue';
 
 onMounted(() => { 
     cargarDatosDelDia(); 
@@ -11,15 +12,12 @@ onMounted(() => {
   <main>
     <h1>BELLO-FIT 🚀</h1>
     <!-- Todo el HTML que estaba en App.vue va acá intacto -->
-    <div class="seccion">
-        <h2>Fecha</h2>
-        <input type="date" v-model="estadoDia.fecha" @change="cargarDatosDelDia">
-    </div>
-
     <ResumenDiario 
         :agua="estadoDia.metricas.agua" 
         :suenio="estadoDia.metricas.suenio" 
     />
+
+    <CalendarioSemanal />
 
     <div class="seccion">
         <h2>Métricas diarias (Sumar)</h2>
