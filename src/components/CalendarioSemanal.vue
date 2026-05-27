@@ -60,7 +60,6 @@ onMounted(() => {
 
 <style scoped>
 .calendario-contenedor {
-    margin-bottom: 20px;
     background-color: transparent;
 }
 

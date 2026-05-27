@@ -1,23 +1,27 @@
 <script setup>
 import { onMounted } from 'vue';
 import { estadoDia, inputsMetricas, cargarDatosDelDia, guardarDiaEnNube } from '../funcs/estadoGlobal.js';
-import ResumenDiario from '../components/ResumenDiario.vue';
 import CalendarioSemanal from '../components/CalendarioSemanal.vue';
+import EstadisticasHoy from '../components/EstadisticasHoy.vue';
 
 onMounted(() => { 
     cargarDatosDelDia(); 
 });
 </script>
+
 <template>
   <main>
+
+    <CalendarioSemanal class="componente-pegajoso"/>
+
     <h1>BELLO-FIT 🚀</h1>
-    <!-- Todo el HTML que estaba en App.vue va acá intacto -->
-    <ResumenDiario 
-        :agua="estadoDia.metricas.agua" 
-        :suenio="estadoDia.metricas.suenio" 
+
+    <EstadisticasHoy
+        :agua="estadoDia.metricas.agua"
+        :suenio="estadoDia.metricas.suenio"
+        :ejercicio="estadoDia.ejercicios.length" 
     />
 
-    <CalendarioSemanal />
 
     <div class="seccion">
         <h2>Métricas diarias (Sumar)</h2>
@@ -35,7 +39,10 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* Los estilos específicos de esta vista que teníamos antes */
+.componente-pegajoso{position: sticky;
+    top: 10px; /* La distancia desde el techo de la pantalla donde se va a frenar */
+    z-index: 10; /* Fundamental para que los ejercicios pasen por DEBAJO de este panel y no lo tapen */
+    }
 main { max-width: 500px; margin: 0 auto; padding: 20px; }
 h1 { text-align: center; color: #333; }
 .seccion { border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 8px; }

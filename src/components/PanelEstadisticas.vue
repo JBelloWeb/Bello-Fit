@@ -185,7 +185,7 @@ watch(() => props.abierto, (estaAbierto) => {
     transform: translateY(100%); /* Arranca escondido abajo de la pantalla */
     transition: transform 0.3s cubic-bezier(0.1, 0.8, 0.2, 1);
     z-index: 1000;
-    max-height: 80vh;
+    height: 95vh;
     display: flex;
     flex-direction: column;
 }
