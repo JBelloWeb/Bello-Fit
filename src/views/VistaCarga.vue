@@ -12,16 +12,7 @@ onMounted(() => {
 <template>
   <main>
 
-    <CalendarioSemanal class="componente-pegajoso"/>
-
-    <h1>BELLO-FIT 🚀</h1>
-
-    <EstadisticasHoy
-        :agua="estadoDia.metricas.agua"
-        :suenio="estadoDia.metricas.suenio"
-        :ejercicio="estadoDia.ejercicios.length" 
-    />
-
+    <CalendarioSemanal class="componente-pegajoso" />
 
     <div class="seccion">
         <h2>Métricas diarias (Sumar)</h2>

@@ -1,30 +1,32 @@
 <script setup>
 import { ref } from 'vue';
+import V_Home from './views/V_Home.vue';
 import VistaCargaMetricas from './views/VistaCarga.vue';
 import VistaCargaEjercicio from './views/VistaCargaEjercicio.vue';
 import PanelEstadisticas from './components/PanelEstadisticas.vue'; // <-- Importamos el panel
 
-const vistaActual = ref('carga'); 
+const currentView = ref('home'); 
 const panelAbierto = ref(false); // <-- Nueva variable para controlar la ventana
 </script>
 
 <template>
   <div class="contenedor-principal">
     
-    <VistaCargaMetricas v-if="vistaActual === 'carga'" />
-    <VistaCargaEjercicio v-if="vistaActual === 'ejercicio'" />
+    <V_Home v-if="currentView === 'home'" />
+    <VistaCargaMetricas v-if="currentView === 'carga'" />
+    <VistaCargaEjercicio v-if="currentView === 'ejercicio'" />
 
     <PanelEstadisticas 
         :abierto="panelAbierto" 
-        :vistaActual="vistaActual" 
+        :currentView="currentView" 
         @cerrar="panelAbierto = false"
     />
 
     <nav class="menu-inferior">
-      <button :class="{ activo: vistaActual === 'carga' }" @click="vistaActual = 'carga'">
+      <button :class="{ activo: currentView === 'carga' }" @click="currentView = 'carga'">
         📝 Cargar métricas
       </button>
-      <button :class="{ activo: vistaActual === 'ejercicio' }" @click="vistaActual = 'ejercicio'">
+      <button :class="{ activo: currentView === 'ejercicio' }" @click="currentView = 'ejercicio'">
         💪 Cargar ejercicio
       </button>
       
