@@ -1,36 +1,45 @@
 <script setup>
-    import { onMounted } from 'vue';
-    import { estadoDia, inputsMetricas, cargarDatosDelDia, guardarDiaEnNube } from '../funcs/estadoGlobal.js';
-    import FormularioEjercicio from '../components/FormularioEjercicio.vue';
-    import CalendarioSemanal from '../components/CalendarioSemanal.vue';
+import { onMounted } from 'vue'
+import {
+  estadoDia,
+  inputsMetricas,
+  cargarDatosDelDia,
+  guardarDiaEnNube,
+} from '../funcs/estadoGlobal.js'
+import FormularioEjercicio from '../components/FormularioEjercicio.vue'
 
+const recibirEjercicioDelHijo = (datos) => {
+  estadoDia.ejercicios.push(datos)
+}
 
-    const recibirEjercicioDelHijo = (datos) => {
-       estadoDia.ejercicios.push(datos);
-   };
-
-    onMounted(() => {cargarDatosDelDia();})
+onMounted(() => {
+  cargarDatosDelDia()
+})
 </script>
 
 <template>
+  <CalendarioSemanal />
 
-     <CalendarioSemanal />
+  <div class="seccion">
+    <h2>Ejercicio</h2>
 
-    <div class="seccion">
-            <h2>Ejercicio</h2>
-            
-            <!-- INYECTAMOS NUESTRO COMPONENTE MUEBLE Y ESCUCHAMOS SU EVENTO -->
-            <FormularioEjercicio @nuevo-ejercicio="recibirEjercicioDelHijo" />
-    
-            <div class="lista-resultados">
-                <ul>
-                    <li v-for="(ej, index) in estadoDia.ejercicios" :key="'ej-'+index">
-                        <h4>{{ ej.musculo }}</h4>
-                        <p>Realizados: {{ ej.ejercicio }}. Detalle: {{ ej.series }}X{{ ej.repeticiones }} utilizando {{ ej.peso }}kg</p>
-                    </li>
-                </ul>
-            </div>
+    <!-- INYECTAMOS NUESTRO COMPONENTE MUEBLE Y ESCUCHAMOS SU EVENTO -->
+    <FormularioEjercicio @nuevo-ejercicio="recibirEjercicioDelHijo" />
+
+    <div class="lista-resultados">
+      <ul>
+        <li v-for="(ej, index) in estadoDia.ejercicios" :key="'ej-' + index">
+          <h4>{{ ej.musculo }}</h4>
+          <p>
+            Realizados: {{ ej.ejercicio }}. Detalle: {{ ej.series }}X{{
+              ej.repeticiones
+            }}
+            utilizando {{ ej.peso }}kg
+          </p>
+        </li>
+      </ul>
     </div>
+  </div>
 
-    <button @click="guardarDiaEnNube" class="btn-gigante">Guardar Día Completo</button>
+  <button @click="guardarDiaEnNube" class="btn-gigante">Guardar Día Completo</button>
 </template>
