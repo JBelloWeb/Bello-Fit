@@ -5,6 +5,7 @@ import TodayStats from '../components/TodayStats.vue'
 
 onMounted(() => {
   loadDayData()
+})
 </script>
 
 <template>
