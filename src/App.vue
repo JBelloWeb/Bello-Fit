@@ -13,7 +13,7 @@ const openPanel = ref(false)
 <template>
   <WeeklyCalendar class="sticky-component" />
 
-  <div class="contenedor-principal">
+  <div class="main-container">
     <V_Home v-if="currentView === 'home'" />
     <V_LogMetrics v-if="currentView === 'carga'" />
     <V_LogExercise v-if="currentView === 'ejercicio'" />
@@ -29,21 +29,21 @@ const openPanel = ref(false)
       <ul>
         <li
           class="nav-item"
-          :class="{ activo: currentView === 'carga' }"
+          :class="{ active: currentView === 'carga' }"
           @click="currentView = 'carga'"
         >
           Metricas
         </li>
         <li
           class="nav-item"
-          :class="{ activo: currentView === 'home' }"
+          :class="{ active: currentView === 'home' }"
           @click="currentView = 'home'"
         >
           Home
         </li>
         <li
           class="nav-item"
-          :class="{ activo: currentView === 'ejercicio' }"
+          :class="{ active: currentView === 'ejercicio' }"
           @click="currentView = 'ejercicio'"
         >
           Ejercicio
@@ -66,7 +66,7 @@ h1 {
   color: var(--bello-red);
   text-shadow: rgb(215 38 56 / 80%) 0px 0px 7px;
 }
-.seccion {
+.section {
   border: 1px solid #ddd;
   padding: 20px;
   margin-bottom: 20px;
@@ -78,12 +78,12 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-.componente-pegajoso {
+.sticky-component {
   position: sticky;
   top: 10px;
   z-index: 10;
 }
-.btn-secundario {
+.btn-secondary {
   background-color: var(--bello-purple);
   color: white;
   border: none;
@@ -91,7 +91,7 @@ input {
   border-radius: 5px;
   cursor: pointer;
 }
-.btn-gigante {
+.btn-giant {
   width: 100%;
   padding: 15px;
   font-size: 18px;
@@ -102,7 +102,7 @@ input {
   cursor: pointer;
   font-weight: bold;
 }
-.lista-resultados {
+.results-list {
   margin-top: 15px;
 }
 ul {
