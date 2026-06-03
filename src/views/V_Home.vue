@@ -1,10 +1,18 @@
 <script setup>
 import { onMounted } from 'vue'
+<<<<<<< HEAD
 import { dayState, loadDayData } from '../funcs/globalState'
 import TodayStats from '../components/TodayStats.vue'
 
 onMounted(() => {
   loadDayData()
+=======
+import { estadoDia, cargarDatosDelDia } from '../funcs/estadoGlobal'
+import EstadisticasHoy from '../components/EstadisticasHoy.vue'
+
+onMounted(() => {
+  cargarDatosDelDia()
+>>>>>>> 20226b31c21bfb61027002dd8d77c1ee6fb53207
 })
 </script>
 
@@ -12,10 +20,17 @@ onMounted(() => {
   <main>
     <h1>BELLO-FIT</h1>
 
+<<<<<<< HEAD
     <TodayStats
       :water="dayState.metrics.water"
       :sleep="dayState.metrics.sleep"
       :exercise="dayState.exercises.length"
+=======
+    <EstadisticasHoy
+      :agua="estadoDia.metricas.agua"
+      :suenio="estadoDia.metricas.suenio"
+      :ejercicio="estadoDia.ejercicios.length"
+>>>>>>> 20226b31c21bfb61027002dd8d77c1ee6fb53207
     />
   </main>
 </template>
