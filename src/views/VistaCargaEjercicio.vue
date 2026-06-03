@@ -5,7 +5,7 @@ import {
   loadDayData,
   saveDayToCloud,
 } from '../funcs/globalState.js'
-import FormularioEjercicio from '../components/FormularioEjercicio.vue'
+import ExerciseForm from '../components/ExerciseForm.vue'
 
 const recibirEjercicioDelHijo = (datos) => {
   dayState.exercises.push(datos)
@@ -23,7 +23,7 @@ onMounted(() => {
     <h2>Ejercicio</h2>
 
     <!-- INYECTAMOS NUESTRO COMPONENTE MUEBLE Y ESCUCHAMOS SU EVENTO -->
-    <FormularioEjercicio @nuevo-ejercicio="recibirEjercicioDelHijo" />
+    <ExerciseForm @new-exercise="recibirEjercicioDelHijo" />
 
     <div class="lista-resultados">
       <ul>

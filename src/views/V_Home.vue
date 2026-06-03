@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted } from 'vue'
 import { dayState, loadDayData } from '../funcs/globalState'
-import EstadisticasHoy from '../components/EstadisticasHoy.vue'
+import TodayStats from '../components/TodayStats.vue'
 
 onMounted(() => {
   loadDayData()
@@ -12,10 +12,10 @@ onMounted(() => {
   <main>
     <h1>BELLO-FIT</h1>
 
-    <EstadisticasHoy
-      :agua="dayState.metrics.water"
-      :suenio="dayState.metrics.sleep"
-      :ejercicio="dayState.exercises.length"
+    <TodayStats
+      :water="dayState.metrics.water"
+      :sleep="dayState.metrics.sleep"
+      :exercise="dayState.exercises.length"
     />
   </main>
 </template>

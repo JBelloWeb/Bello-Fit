@@ -4,9 +4,9 @@ import { dayState, loadDayData } from '../funcs/globalState.js';
 
 const calendarDays = ref([]);
 
-const generarDias = () => {
+const generateDays = () => {
     // 1. ACÁ DECLARAMOS LA VARIABLE (La caja vacía)
-    const temporaryArray = [];
+    const days = [];
     const today = new Date();
     
     for (let i = -14; i <= 3; i++) {
@@ -18,39 +18,39 @@ const generarDias = () => {
         const dayNumber = currentDay.getDate();
         
         // 2. ACÁ LA LLENAMOS
-        temporaryArray.push({
+        days.push({
             iso: iso,
             name: dayName,
             number: dayNumber
         });
     }
     
-    // 3. ACÁ LA USAMOS (Asegurate de que esté ADENTRO de la función generarDias)
-    calendarDays.value = temporaryArray;
+    // 3. ACÁ LA USAMOS (Asegurate de que esté ADENTRO de la función generateDays)
+    calendarDays.value = days;
 };
 
-const seleccionarDia = (iso) => {
+const selectDay = (iso) => {
     dayState.date = iso;
     loadDayData();
 };
 
 onMounted(() => {
-    generarDias();
+    generateDays();
     setTimeout(() => {
-        const contenedor = document.querySelector('.dias-scroll');
-        if(contenedor) contenedor.scrollLeft = contenedor.scrollWidth;
+        const container = document.querySelector('.days-scroll');
+        if(container) container.scrollLeft = container.scrollWidth;
     }, 100);
 });
 </script>
 
 <template>
-    <div class="calendario-contenedor">
-        <div class="dias-scroll">
+    <div class="calendar-container">
+        <div class="days-scroll">
             <div v-for="day in calendarDays"
             :key="day.iso"
-            class="day-tarjeta"
+            class="day-card"
             :class="{ 'active': dayState.date === day.iso }"
-            @click="seleccionarDia(day.iso)">
+            @click="selectDay(day.iso)">
             <span class="number">{{ day.number }}</span>
                 <span class="name">{{ day.name }}</span>
             </div>
@@ -59,11 +59,11 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.calendario-contenedor {
+.calendar-container {
     background-color: transparent;
 }
 
-.dias-scroll {
+.days-scroll {
     mask-image: linear-gradient(90deg,rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.9) 10%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.9) 90%, rgba(0, 0, 0, 0) 100%);
     display: flex;
     overflow-x: auto;
@@ -72,11 +72,11 @@ onMounted(() => {
     /* Ocultar barra de scroll para que se vea como app nativa */
     scrollbar-width: none; 
 }
-.dias-scroll::-webkit-scrollbar {
+.days-scroll::-webkit-scrollbar {
     display: none;
 }
 
-.day-tarjeta {
+.day-card {
     padding: 10px;
     min-width: 60px;
     min-height: 60px;
@@ -93,27 +93,27 @@ onMounted(() => {
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.day-tarjeta .name {
+.day-card .name {
     font-size: 0.6rem;
     color: var(--bello-cream);
     margin-bottom: 5px;
 }
 
-.day-tarjeta .number {
+.day-card .number {
     font-size: 1.2rem;
     font-weight: bold;
     color: var(--bello-red);
 }
 
-.day-tarjeta.active {
+.day-card.active {
     background-color: var(--bello-red, #D72638);
     border-color: var(--bello-red, #D72638);
     transform: translateY(-2px);
     box-shadow: 0 0px 9px 1px rgb(215 38 56 / 58%);
 }
 
-.day-tarjeta.active .name, 
-.day-tarjeta.active .number {
+.day-card.active .name, 
+.day-card.active .number {
     color: var(--bello-cream);
 }
 </style>

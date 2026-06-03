@@ -1,45 +1,59 @@
 <script setup>
-import { ref } from 'vue';
-import V_Home from './views/V_Home.vue';
-import VistaCargaMetricas from './views/VistaCarga.vue';
-import VistaCargaEjercicio from './views/VistaCargaEjercicio.vue';
-import PanelEstadisticas from './components/PanelEstadisticas.vue'; // <-- Importamos el panel
+import { ref } from 'vue'
+import V_Home from './views/V_Home.vue'
+import VistaCargaMetricas from './views/VistaCarga.vue'
+import VistaCargaEjercicio from './views/VistaCargaEjercicio.vue'
+import StatsPanel from './components/StatsPanel.vue'
+import WeeklyCalendar from './components/WeeklyCalendar.vue'
 
-const currentView = ref('home'); 
-const panelAbierto = ref(false); // <-- Nueva variable para controlar la ventana
+const currentView = ref('home')
+const openPanel = ref(false)
 </script>
 
 <template>
+  <WeeklyCalendar class="sticky-component" />
+
   <div class="contenedor-principal">
-    
     <V_Home v-if="currentView === 'home'" />
     <VistaCargaMetricas v-if="currentView === 'carga'" />
     <VistaCargaEjercicio v-if="currentView === 'ejercicio'" />
 
-    <PanelEstadisticas 
-        :abierto="panelAbierto" 
-        :currentView="currentView" 
-        @cerrar="panelAbierto = false"
+    <StatsPanel
+      :is-open="openPanel"
+      :current-view="currentView"
+      @close="openPanel = false"
     />
 
-    <nav class="menu-inferior">
-      <button :class="{ activo: currentView === 'carga' }" @click="currentView = 'carga'">
-        📝 Cargar métricas
-      </button>
-      <button :class="{ activo: currentView === 'ejercicio' }" @click="currentView = 'ejercicio'">
-        💪 Cargar ejercicio
-      </button>
-      
-      <button @click="panelAbierto = true">
-        📊 Estadísticas
-      </button>
+    <nav class="bottom-nav">
+      <span class="panel-slider" @click="openPanel = true">-</span>
+      <ul>
+        <li
+          class="nav-item"
+          :class="{ activo: currentView === 'carga' }"
+          @click="currentView = 'carga'"
+        >
+          Metricas
+        </li>
+        <li
+          class="nav-item"
+          :class="{ activo: currentView === 'home' }"
+          @click="currentView = 'home'"
+        >
+          Home
+        </li>
+        <li
+          class="nav-item"
+          :class="{ activo: currentView === 'ejercicio' }"
+          @click="currentView = 'ejercicio'"
+        >
+          Ejercicio
+        </li>
+      </ul>
     </nav>
-    
   </div>
 </template>
 
 <style scoped>
-
 main {
   max-width: 500px;
   margin: 0 auto;
@@ -48,6 +62,7 @@ main {
 }
 h1 {
   text-align: center;
+  margin: a;
   color: var(--bello-red);
   text-shadow: rgb(215 38 56 / 80%) 0px 0px 7px;
 }
@@ -62,6 +77,11 @@ input {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+.componente-pegajoso {
+  position: sticky;
+  top: 10px;
+  z-index: 10;
 }
 .btn-secundario {
   background-color: var(--bello-purple);
@@ -90,5 +110,50 @@ ul {
 }
 li {
   margin-bottom: 10px;
+}
+
+.panel-slider {
+  transform: scaleX(5) scaleY(2);
+  color: var(--bello-purple);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  mask-image: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(255, 255, 255, 1) 60%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  border: 5px solid var(--bello-red);
+  border-radius: 35px 35px 0px 0px;
+}
+
+.bottom-nav ul {
+  padding: 0px;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 2rem;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-item {
+  &:hover {
+    cursor: pointer;
+  }
 }
 </style>
