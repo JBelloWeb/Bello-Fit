@@ -1,31 +1,36 @@
 <script setup>
-    import { onMounted } from 'vue';
-    import { estadoDia, cargarDatosDelDia } from '../funcs/estadoGlobal';
-    import CalendarioSemanal from '../components/CalendarioSemanal.vue';
-    import EstadisticasHoy from '../components/EstadisticasHoy.vue';
+import { onMounted } from 'vue'
+import { dayState, loadDayData } from '../funcs/globalState'
+import EstadisticasHoy from '../components/EstadisticasHoy.vue'
 
-    onMounted(() =>{
-        cargarDatosDelDia();
-    })
+onMounted(() => {
+  loadDayData()
+})
 </script>
 
 <template>
-    <main>
-        <CalendarioSemanal class="sticky-component" />
+  <main>
+    <h1>BELLO-FIT</h1>
 
-        <h1>BELLO-FIT</h1>
-
-        <EstadisticasHoy 
-        :agua="estadoDia.metricas.agua"
-        :suenio="estadoDia.metricas.suenio"
-        :ejercicio="estadoDia.ejercicios.length" />
-    </main>
+    <EstadisticasHoy
+      :agua="dayState.metrics.water"
+      :suenio="dayState.metrics.sleep"
+      :ejercicio="dayState.exercises.length"
+    />
+  </main>
 </template>
 
-<style>
-.sticky-component{
-    position: sticky;
-    top: 10px;
-    z-index: 10;
+<style scoped>
+h1 {
+  text-align: center;
+  margin: auto;
+  margin-top: 50px;
+  color: var(--bello-red);
+  text-shadow: rgb(215 38 56 / 80%) 0px 0px 7px;
+}
+.sticky-component {
+  position: sticky;
+  top: 10px;
+  z-index: 10;
 }
 </style>

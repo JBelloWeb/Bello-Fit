@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { estadoDia, cargarDatosDelDia } from '../funcs/estadoGlobal.js';
+import { dayState, loadDayData } from '../funcs/globalState.js';
 
 const calendarDays = ref([]);
 
@@ -30,8 +30,8 @@ const generarDias = () => {
 };
 
 const seleccionarDia = (iso) => {
-    estadoDia.fecha = iso;
-    cargarDatosDelDia();
+    dayState.date = iso;
+    loadDayData();
 };
 
 onMounted(() => {
@@ -49,7 +49,7 @@ onMounted(() => {
             <div v-for="day in calendarDays"
             :key="day.iso"
             class="day-tarjeta"
-            :class="{ 'active': estadoDia.fecha === day.iso }"
+            :class="{ 'active': dayState.date === day.iso }"
             @click="seleccionarDia(day.iso)">
             <span class="number">{{ day.number }}</span>
                 <span class="name">{{ day.name }}</span>
