@@ -1,24 +1,16 @@
 <script setup>
 import { ref } from 'vue'
 import V_Home from './views/V_Home.vue'
-<<<<<<< HEAD
 import V_LogMetrics from './views/V_LogMetrics.vue'
 import V_LogExercise from './views/V_LogExercise.vue'
 import StatsPanel from './components/StatsPanel.vue'
 import WeeklyCalendar from './components/WeeklyCalendar.vue'
-=======
-import VistaCargaMetricas from './views/VistaCarga.vue'
-import VistaCargaEjercicio from './views/VistaCargaEjercicio.vue'
-import PanelEstadisticas from './components/PanelEstadisticas.vue'
-import CalendarioSemanal from './components/CalendarioSemanal.vue'
->>>>>>> 20226b31c21bfb61027002dd8d77c1ee6fb53207
 
 const currentView = ref('home')
 const openPanel = ref(false)
 </script>
 
 <template>
-<<<<<<< HEAD
   <WeeklyCalendar class="sticky-component" />
 
   <div class="main-container">
@@ -26,57 +18,28 @@ const openPanel = ref(false)
     <V_LogMetrics v-if="currentView === 'carga'" />
     <V_LogExercise v-if="currentView === 'ejercicio'" />
 
-    <StatsPanel
-      :is-open="openPanel"
-      :current-view="currentView"
-      @close="openPanel = false"
-=======
-  <CalendarioSemanal class="sticky-component" />
-
-  <div class="contenedor-principal">
-    <V_Home v-if="currentView === 'home'" />
-    <VistaCargaMetricas v-if="currentView === 'carga'" />
-    <VistaCargaEjercicio v-if="currentView === 'ejercicio'" />
-
-    <PanelEstadisticas
-      :abierto="openPanel"
-      :currentView="currentView"
-      @cerrar="openPanel = false"
->>>>>>> 20226b31c21bfb61027002dd8d77c1ee6fb53207
-    />
+    <StatsPanel :is-open="openPanel" :current-view="currentView" @close="openPanel = false" />
 
     <nav class="bottom-nav">
       <span class="panel-slider" @click="openPanel = true">-</span>
       <ul>
         <li
           class="nav-item"
-<<<<<<< HEAD
           :class="{ active: currentView === 'carga' }"
-=======
-          :class="{ activo: currentView === 'carga' }"
->>>>>>> 20226b31c21bfb61027002dd8d77c1ee6fb53207
           @click="currentView = 'carga'"
         >
           Metricas
         </li>
         <li
           class="nav-item"
-<<<<<<< HEAD
           :class="{ active: currentView === 'home' }"
-=======
-          :class="{ activo: currentView === 'home' }"
->>>>>>> 20226b31c21bfb61027002dd8d77c1ee6fb53207
           @click="currentView = 'home'"
         >
           Home
         </li>
         <li
           class="nav-item"
-<<<<<<< HEAD
           :class="{ active: currentView === 'ejercicio' }"
-=======
-          :class="{ activo: currentView === 'ejercicio' }"
->>>>>>> 20226b31c21bfb61027002dd8d77c1ee6fb53207
           @click="currentView = 'ejercicio'"
         >
           Ejercicio
@@ -111,20 +74,12 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-<<<<<<< HEAD
 .sticky-component {
-=======
-.componente-pegajoso {
->>>>>>> 20226b31c21bfb61027002dd8d77c1ee6fb53207
   position: sticky;
   top: 10px;
   z-index: 10;
 }
-<<<<<<< HEAD
 .btn-secondary {
-=======
-.btn-secundario {
->>>>>>> 20226b31c21bfb61027002dd8d77c1ee6fb53207
   background-color: var(--bello-purple);
   color: white;
   border: none;
