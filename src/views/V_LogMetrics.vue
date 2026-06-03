@@ -14,7 +14,7 @@ onMounted(() => {
 
 <template>
   <main>
-    <div class="seccion">
+    <div class="section">
       <h2>Métricas diarias (Sumar)</h2>
       <label>Agua (Vasos a sumar)</label> <br />
       <input type="number" v-model="metricsInputs.water" /> <br /><br />
@@ -29,7 +29,7 @@ onMounted(() => {
     </div>
 
     <br />
-    <button @click="saveDayToCloud" class="btn-gigante">Guardar Día Completo</button>
+    <button @click="saveDayToCloud" class="btn-giant">Guardar Día Completo</button>
   </main>
 </template>
 
@@ -43,7 +43,7 @@ h1 {
   text-align: center;
   color: #333;
 }
-.seccion {
+.section {
   border: 1px solid #ddd;
   padding: 20px;
   margin-bottom: 20px;
@@ -55,7 +55,7 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-.btn-secundario {
+.btn-secondary {
   background-color: var(--bello-purple);
   color: white;
   border: none;
@@ -63,7 +63,7 @@ input {
   border-radius: 5px;
   cursor: pointer;
 }
-.btn-gigante {
+.btn-giant {
   width: 100%;
   padding: 15px;
   font-size: 18px;
@@ -74,7 +74,7 @@ input {
   cursor: pointer;
   font-weight: bold;
 }
-.lista-resultados {
+.results-list {
   margin-top: 15px;
 }
 </style>

@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import V_Home from './views/V_Home.vue'
-import VistaCargaMetricas from './views/VistaCarga.vue'
-import VistaCargaEjercicio from './views/VistaCargaEjercicio.vue'
+import V_LogMetrics from './views/V_LogMetrics.vue'
+import V_LogExercise from './views/V_LogExercise.vue'
 import StatsPanel from './components/StatsPanel.vue'
 import WeeklyCalendar from './components/WeeklyCalendar.vue'
 
@@ -15,8 +15,8 @@ const openPanel = ref(false)
 
   <div class="contenedor-principal">
     <V_Home v-if="currentView === 'home'" />
-    <VistaCargaMetricas v-if="currentView === 'carga'" />
-    <VistaCargaEjercicio v-if="currentView === 'ejercicio'" />
+    <V_LogMetrics v-if="currentView === 'carga'" />
+    <V_LogExercise v-if="currentView === 'ejercicio'" />
 
     <StatsPanel
       :is-open="openPanel"

@@ -3,10 +3,10 @@ import { ref, onMounted } from 'vue';
 import { supabase } from '../supabase.js';
 
 // Variable para mostrar un "Cargando..." mientras Supabase busca los datos
-const cargando = ref(true);
+const loading = ref(true);
 
 // 1. CONFIGURACIÓN VISUAL DEL GRÁFICO
-const opcionesGrafico = ref({
+const chartOptions = ref({
   chart: { 
       type: 'bar', 
       toolbar: { show: false } // Oculta el menú de descargar/zoom
@@ -22,52 +22,52 @@ const opcionesGrafico = ref({
 });
 
 // 2. LOS DATOS REALES
-const seriesGrafico = ref([{
+const chartSeries = ref([{
   name: 'Veces entrenado',
   data: [] // Acá irán las cantidades
 }]);
 
 // 3. LA LÓGICA MATEMÁTICA
-const calcularEstadisticas = async () => {
-  cargando.value = true;
+const calculateStats = async () => {
+  loading.value = true;
   
   try {
     // Traemos absolutamente todos los ejercicios de la base de datos
-    const { data: ejercicios, error } = await supabase
+    const { data: exercises, error } = await supabase
       .from('ejercicio')
       .select('musculo');
 
     if (error) throw error;
 
-    if (ejercicios && ejercicios.length > 0) {
+    if (exercises && exercises.length > 0) {
         // Objeto temporal para contar: { "PECHO": 4, "ESPALDA": 2 }
-        const conteoMusculos = {};
+        const muscleCount = {};
         
-        ejercicios.forEach(ej => {
+        exercises.forEach(ex => {
             // Pasamos todo a mayúsculas y quitamos espacios para que "Pecho" y "pecho " sumen juntos
-            const musculoLimpiado = ej.musculo.trim().toUpperCase();
+            const cleanedMuscle = ex.musculo.trim().toUpperCase();
             
-            if (conteoMusculos[musculoLimpiado]) {
-                conteoMusculos[musculoLimpiado]++;
+            if (muscleCount[cleanedMuscle]) {
+                muscleCount[cleanedMuscle]++;
             } else {
-                conteoMusculos[musculoLimpiado] = 1;
+                muscleCount[cleanedMuscle] = 1;
             }
         });
 
         // Inyectamos el resultado en las variables del gráfico
-        opcionesGrafico.value.xaxis.categories = Object.keys(conteoMusculos);
-        seriesGrafico.value[0].data = Object.values(conteoMusculos);
+        chartOptions.value.xaxis.categories = Object.keys(muscleCount);
+        chartSeries.value[0].data = Object.values(muscleCount);
     }
   } catch (error) {
     console.error("Error calculando estadísticas:", error);
   } finally {
-    cargando.value = false;
+    loading.value = false;
   }
 };
 
 // Disparamos el cálculo al abrir la pestaña
 onMounted(() => {
-  calcularEstadisticas();
+  calculateStats();
 });
 </script>
 
@@ -75,18 +75,18 @@ onMounted(() => {
   <main>
     <h1>Estadísticas 📊</h1>
     
-    <div v-if="cargando" class="mensaje-carga">
+    <div v-if="loading" class="loading-message">
       <p>Calculando tu progreso histórico...</p>
     </div>
 
-    <div v-else class="tarjeta-grafico">
+    <div v-else class="chart-card">
       <h3>Distribución Muscular</h3>
       
       <apexchart 
         type="bar" 
         height="350" 
-        :options="opcionesGrafico" 
-        :series="seriesGrafico"
+        :options="chartOptions" 
+        :series="chartSeries"
       ></apexchart>
       
     </div>
@@ -104,7 +104,7 @@ h1 {
   color: var(--bello-red);
   text-shadow: rgb(215 38 56 / 80%) 0px 0px 7px;
 }
-.tarjeta-grafico {
+.chart-card {
   background: white;
   border: 1px solid #ddd;
   border-radius: 12px;
@@ -118,7 +118,7 @@ h3 {
   color: #333;
   font-size: 1.1rem;
 }
-.mensaje-carga {
+.loading-message {
   text-align: center;
   color: #666;
   font-style: italic;
