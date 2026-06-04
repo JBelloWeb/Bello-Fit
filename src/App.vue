@@ -5,6 +5,7 @@ import V_LogMetrics from './views/V_LogMetrics.vue'
 import V_LogExercise from './views/V_LogExercise.vue'
 import StatsPanel from './components/StatsPanel.vue'
 import WeeklyCalendar from './components/WeeklyCalendar.vue'
+import NeonNav from './components/NeonNav.vue'
 
 const currentView = ref('home')
 const openPanel = ref(false)
@@ -15,12 +16,13 @@ const openPanel = ref(false)
 
   <div class="main-container">
     <V_Home v-if="currentView === 'home'" />
-    <V_LogMetrics v-if="currentView === 'carga'" />
-    <V_LogExercise v-if="currentView === 'ejercicio'" />
+    <V_LogMetrics v-if="currentView === 'metrics'" />
+    <V_LogExercise v-if="currentView === 'exercise'" />
 
     <StatsPanel :is-open="openPanel" :current-view="currentView" @close="openPanel = false" />
 
-    <nav class="bottom-nav">
+    <NeonNav :disabled="openPanel" @change="currentView = $event" @open-panel="openPanel = true" />
+    <!-- <nav class="bottom-nav">
       <span class="panel-slider" @click="openPanel = true">-</span>
       <ul>
         <li
@@ -45,7 +47,7 @@ const openPanel = ref(false)
           Ejercicio
         </li>
       </ul>
-    </nav>
+    </nav> -->
   </div>
 </template>
 
