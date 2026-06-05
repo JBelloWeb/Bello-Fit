@@ -65,7 +65,7 @@ h1 {
   text-shadow: rgb(215 38 56 / 80%) 0px 0px 7px;
 }
 .section {
-  border: 1px solid #ddd;
+  border: 1px solid var(--bello-border);
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 8px;
@@ -73,7 +73,7 @@ h1 {
 input {
   margin-top: 5px;
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--bello-border);
   border-radius: 4px;
 }
 .sticky-component {

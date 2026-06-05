@@ -67,12 +67,12 @@ const submit = () => {
 input {
   margin-top: 5px;
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--bello-border);
   border-radius: 4px;
   margin-bottom: 10px;
 }
 .btn-secondary {
-  background-color: #2196f3;
+  background-color: var(--bello-purple);
   color: white;
   border: none;
   padding: 10px 15px;

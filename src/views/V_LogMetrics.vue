@@ -1,11 +1,6 @@
 <script setup>
 import { onMounted } from 'vue'
-import {
-  dayState,
-  metricsInputs,
-  loadDayData,
-  saveDayToCloud,
-} from '../funcs/globalState.js'
+import { dayState, metricsInputs, loadDayData, saveDayToCloud } from '../funcs/globalState.js'
 
 onMounted(() => {
   loadDayData()
@@ -41,10 +36,10 @@ main {
 }
 h1 {
   text-align: center;
-  color: #333;
+  color: var(--bello-text-muted);
 }
 .section {
-  border: 1px solid #ddd;
+  border: 1px solid var(--bello-border);
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 8px;
@@ -52,7 +47,7 @@ h1 {
 input {
   margin-top: 5px;
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--bello-border);
   border-radius: 4px;
 }
 .btn-secondary {

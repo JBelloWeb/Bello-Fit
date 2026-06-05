@@ -1,10 +1,6 @@
 <script setup>
 import { onMounted } from 'vue'
-import {
-  dayState,
-  loadDayData,
-  saveDayToCloud,
-} from '../funcs/globalState.js'
+import { dayState, loadDayData, saveDayToCloud } from '../funcs/globalState.js'
 import ExerciseForm from '../components/ExerciseForm.vue'
 
 const onNewExercise = (data) => {
@@ -28,10 +24,8 @@ onMounted(() => {
         <li v-for="(ex, index) in dayState.exercises" :key="'ex-' + index">
           <h4>{{ ex.muscle }}</h4>
           <p>
-            Realizados: {{ ex.exercise }}. Detalle: {{ ex.sets }}X{{
-              ex.reps
-            }}
-            utilizando {{ ex.weight }}kg
+            Realizados: {{ ex.exercise }}. Detalle: {{ ex.sets }}X{{ ex.reps }} utilizando
+            {{ ex.weight }}kg
           </p>
         </li>
       </ul>

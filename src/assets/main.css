@@ -1,15 +1,21 @@
-:root{
-    --bello-black: #1f2428;
-    --bello-cream: #fff2c7;
-    --bello-red: #D72638;
-    --bello-purple: #7a5ddd;
+:root {
+  --bello-black: #1f2428;
+  --bello-surface: #2a2a2a;
+  --bello-surface-2: #1a1c23;
+  --bello-border: #333;
+  --bello-text-muted: #8a99af;
+  --bello-cream: #fff2c7;
+  --bello-red: #d72638;
+  --bello-purple: #9b7dff;
+  --bello-success: #4ade80;
+  --bello-warning: #facc15;
 }
 
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-body{
-    background-color: var(--bello-black);
-    color: var(--bello-cream);
+body {
+  background-color: var(--bello-black);
+  color: var(--bello-cream);
 }

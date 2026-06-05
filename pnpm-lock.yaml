@@ -14,6 +14,9 @@ importers:
       '@supabase/supabase-js':
         specifier: ^2.106.1
         version: 2.107.0
+      animejs:
+        specifier: ^4.4.1
+        version: 4.4.1
       apexcharts:
         specifier: ^5.13.0
         version: 5.13.0
@@ -412,6 +415,9 @@ packages:
 
   '@vue/shared@3.5.35':
     resolution: {integrity: sha512-zSbjL7gRXwks2ZQLRGCajBtBXEOXW9Ddhn/HvSdrGkE2dqGnumzW8XtusRrxrE9LvqtiqDXQ+A60Hp6mvdYxfA==}
+
+  animejs@4.4.1:
+    resolution: {integrity: sha512-XimhJw4vPb6tAd6Zaoa6BaspJ8UteQMKvL7Pvrt6MW/6u2UvJs0TB/LLqR1sigaiYvpVPC3Tokr9emcCMhWFhw==}
 
   ansis@4.3.1:
     resolution: {integrity: sha512-BJ8/l4R5LRE7hW9WdSuGYrLSHi2ynxeFpDFbH0K/CgNeY/tyhk+vO6TYxXC5r5CpUhNVX310xzPsN/H9lCdfOA==}
@@ -1253,6 +1259,8 @@ snapshots:
       vue: 3.5.35
 
   '@vue/shared@3.5.35': {}
+
+  animejs@4.4.1: {}
 
   ansis@4.3.1: {}
 

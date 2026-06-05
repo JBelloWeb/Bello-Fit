@@ -116,7 +116,9 @@ const onSlicerEnd = () => {
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  transition: transform 0.35s cubic-bezier(0.1, 0.8, 0.2, 1), opacity 0.3s ease;
+  transition:
+    transform 0.35s cubic-bezier(0.1, 0.8, 0.2, 1),
+    opacity 0.3s ease;
 }
 
 .neon-navbar.is-disabled {
@@ -156,16 +158,23 @@ const onSlicerEnd = () => {
   width: 52px;
   height: 5px;
   border-radius: 999px;
-  background-color: rgba(255, 42, 85, 0.6);
-  box-shadow: 0 0 4px rgba(255, 42, 85, 0.7), 0 0 10px rgba(255, 42, 85, 0.3);
-  transition: width 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  background-color: rgba(215, 38, 56, 0.6);
+  box-shadow:
+    0 0 4px rgba(215, 38, 56, 0.7),
+    0 0 10px rgba(215, 38, 56, 0.3);
+  transition:
+    width 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .slicer:hover .slicer-bar,
 .slicer:active .slicer-bar {
   width: 70px;
-  background-color: rgba(255, 42, 85, 0.9);
-  box-shadow: 0 0 6px rgba(255, 42, 85, 0.9), 0 0 14px rgba(255, 42, 85, 0.5);
+  background-color: rgba(215, 38, 56, 0.9);
+  box-shadow:
+    0 0 6px rgba(215, 38, 56, 0.9),
+    0 0 14px rgba(215, 38, 56, 0.5);
 }
 
 .nav-background {
@@ -175,8 +184,8 @@ const onSlicerEnd = () => {
   width: 100%;
   height: 100%;
   z-index: -1;
-  filter: drop-shadow(0 0 2px rgba(255, 42, 85, 0.8)) drop-shadow(0 0 4px rgba(255, 42, 85, 0.4))
-    drop-shadow(0 0 8px rgba(255, 42, 85, 0.1));
+  filter: drop-shadow(0 0 2px rgba(215, 38, 56, 0.8)) drop-shadow(0 0 4px rgba(215, 38, 56, 0.4))
+    drop-shadow(0 0 8px rgba(215, 38, 56, 0.1));
 }
 
 .nav-items {
@@ -197,7 +206,7 @@ const onSlicerEnd = () => {
 }
 
 .nav-items li.active {
-  color: #ff2a55;
-  filter: drop-shadow(0 0 4px rgba(255, 42, 85, 0.8)) drop-shadow(0 0 12px rgba(255, 42, 85, 0.4));
+  color: var(--bello-red);
+  filter: drop-shadow(0 0 4px rgba(215, 38, 56, 0.8)) drop-shadow(0 0 12px rgba(215, 38, 56, 0.4));
 }
 </style>
